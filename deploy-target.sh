@@ -22,7 +22,7 @@ unset DOCKER_HOST
 set -x
 
 # TODO: Move to OpenUp organisation
-export BASE_TAG="pidelport/khetha-django:${TARGET_NAME}"
+export BASE_TAG="pidelport/khetha-deploy:${TARGET_NAME}"
 
 
 # Build

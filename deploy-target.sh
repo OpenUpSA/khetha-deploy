@@ -12,8 +12,8 @@ NAME  (example: 'staging')
 DOCKER_HOST  (example: 'ssh://user@host')
     A valid DOCKER_HOST to deploy to.
 "
-export TARGET_NAME="${1:?"$USAGE"}"
-export TARGET_DOCKER_HOST="${2:?"$USAGE"}"
+TARGET_NAME="${1:?"$USAGE"}"
+TARGET_DOCKER_HOST="${2:?"$USAGE"}"
 
 test -z "${DOCKER_HOST}" || { echo "Warning, ignoring existing DOCKER_HOST for local build: ${DOCKER_HOST}"; }
 unset DOCKER_HOST

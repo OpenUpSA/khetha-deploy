@@ -1,0 +1,28 @@
+# Base docker-compose.yml for deployment.
+#
+# This assumes a BASE_TAG build arg.
+#
+version: '3.4'
+
+
+services:
+
+  db:
+    # Constrain PostgreSQL major version, for data compatibility.
+    image: postgres:11-alpine
+
+  wsgi:
+    image: "${BASE_TAG}-wsgi"
+    depends_on:
+      - db
+    environment:
+      - DJANGO_DATABASE_URL=postgres://postgres@db/postgres
+    build:
+      context: wsgi
+
+  web:
+    image: "${BASE_TAG}-web"
+    depends_on:
+      - wsgi
+    build:
+      context: web

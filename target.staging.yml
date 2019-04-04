@@ -1,0 +1,18 @@
+version: '3.4'
+
+services:
+
+  db:
+    volumes:
+    - khetha-postgres-data-11-staging:/var/lib/postgresql/data
+
+  wsgi:
+    env_file:
+      - target.staging.env
+
+  web:
+    ports:
+    - '80:80'
+
+volumes:
+  khetha-postgres-data-11-staging:

@@ -21,6 +21,7 @@ unset DOCKER_HOST
 # Begin tracing.
 set -x
 
+# Base repo / tag to save the deployment images to.
 # TODO: Move to OpenUp organisation
 export BASE_TAG="pidelport/khetha-deploy:${TARGET_NAME}"
 

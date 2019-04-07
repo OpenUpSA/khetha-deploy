@@ -19,21 +19,18 @@ TARGET_NAME="${1:?"$USAGE"}"
 TARGET_DOCKER_HOST="${2:?"$USAGE"}"
 SOURCE_BUILD="${3}"
 
-test -z "${DOCKER_HOST}" || { echo "Warning, ignoring existing DOCKER_HOST for local build: ${DOCKER_HOST}"; }
-unset DOCKER_HOST
-
 # Begin tracing.
 set -x
 
 # Base repo / tag to save the deployment images to.
 # TODO: Move to OpenUp organisation
-export BASE_TAG="pidelport/khetha-deploy:${TARGET_NAME}"
+export BASE_TAG="${BASE_TAG:-"pidelport/khetha-deploy:${TARGET_NAME}"}"
 
 
 # Build or pull BASE_TAG
 if test -n "${SOURCE_BUILD}"; then
     echo "Building ${BASE_TAG} from ${SOURCE_BUILD}"
-    docker build "${SOURCE_BUILD}" --tag "${BASE_TAG}"
+    docker build --pull "${SOURCE_BUILD}" --tag "${BASE_TAG}"
 else
     SOURCE_TAG='pidelport/khetha-django:latest'  # XXX: Hard-coded stable source for now.
     echo "Pulling ${BASE_TAG} from ${SOURCE_TAG}"

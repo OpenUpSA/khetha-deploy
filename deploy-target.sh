@@ -19,9 +19,6 @@ TARGET_NAME="${1:?"$USAGE"}"
 TARGET_DOCKER_HOST="${2:?"$USAGE"}"
 SOURCE_BUILD="${3}"
 
-test -z "${DOCKER_HOST}" || { echo "Warning, ignoring existing DOCKER_HOST for local build: ${DOCKER_HOST}"; }
-unset DOCKER_HOST
-
 # Begin tracing.
 set -x
 

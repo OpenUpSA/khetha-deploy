@@ -27,7 +27,7 @@ set -x
 
 # Base repo / tag to save the deployment images to.
 # TODO: Move to OpenUp organisation
-export BASE_TAG="pidelport/khetha-deploy:${TARGET_NAME}"
+export BASE_TAG="${BASE_TAG:-"pidelport/khetha-deploy:${TARGET_NAME}"}"
 
 
 # Build or pull BASE_TAG

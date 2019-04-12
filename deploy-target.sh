@@ -30,7 +30,10 @@ export BASE_TAG="${BASE_TAG:-"pidelport/khetha-deploy:${TARGET_NAME}"}"
 # Build or pull BASE_TAG
 if test -n "${SOURCE_BUILD}"; then
     echo "Building ${BASE_TAG} from ${SOURCE_BUILD}"
-    docker build --pull "${SOURCE_BUILD}" --tag "${BASE_TAG}"
+    docker build \
+        --build-arg DJANGO_STATICFILES_STORAGE='whitenoise.storage.CompressedManifestStaticFilesStorage' \
+        --build-arg WHITENOISE_KEEP_ONLY_HASHED_FILES='True' \
+        --pull "${SOURCE_BUILD}" --tag "${BASE_TAG}"
 else
     SOURCE_TAG='pidelport/khetha-django:latest'  # XXX: Hard-coded stable source for now.
     echo "Pulling ${BASE_TAG} from ${SOURCE_TAG}"

@@ -1,5 +1,18 @@
-#!/bin/sh -ex
+#!/bin/sh -e
 cd "$(dirname "$0")"
+
+USAGE="
+Usage:  $0 SOURCE_BUILD
+
+Test-deploy khetha-django locally.
+
+SOURCE_BUILD (example: 'khetha-django')
+    Path to a source checkout of khetha-django to build.
+"
+SOURCE_BUILD="${1:?"$USAGE"}"
+
+# Begin tracing.
+set -x
 
 export BASE_TAG='khetha-local-test:latest'
 

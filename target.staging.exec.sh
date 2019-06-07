@@ -7,4 +7,5 @@
 export DOCKER_HOST='ssh://root@178.128.143.69'
 
 CONTAINER_ID="$(docker ps --filter label=com.docker.swarm.service.name=khetha-staging_wsgi --quiet)"
-docker exec -it "${CONTAINER_ID}" "${@:-"sh"}"
+# XXX: Some command invocations expect -t here, some not: adjust as necessary.
+docker exec -i "${CONTAINER_ID}" "${@:-"sh"}"

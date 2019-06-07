@@ -23,4 +23,4 @@ docker build \
     --pull  "${SOURCE_BUILD}" --tag "${BASE_TAG}"
 docker-compose build --build-arg BASE_TAG
 
-docker-compose -f docker-compose.yml -f target.local.yml up
+docker-compose -f docker-compose.yml -f target.local.yml up -d
